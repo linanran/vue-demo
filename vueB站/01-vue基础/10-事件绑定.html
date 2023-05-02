@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{message}}
+    <h3>v-on的使用</h3>
+    <h4>1，不传参，不加括号</h4>
+    <button @click="test">test</button>
+    <button @click="test2('abc')">test2</button>
+    <button @click="test3()">test3</button>
+    <button @click="test4($event,'abc')">test4</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"hello world"
+        },
+        methods:{
+            test(event){
+                console.log("button:"+event);
+            },
+            test2(event,message){
+                console.log("第一个参数为："+event);
+                console.log("第二个参数为："+message);
+            },
+            test3(event){
+                console.log("test3:"+event);
+            },
+            test4(event,message){
+                console.log("第一个参数为："+event);
+                console.log("第二个参数为："+message);
+            }
+        }
+    })
+</script>
+</body>
+</html>

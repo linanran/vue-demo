@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书购物车</title>
+    <style>
+        /*button{*/
+        /*    background-color: black;*/
+        /*}*/
+    </style>
+</head>
+<body>
+    <div id="app">
+        <table>
+            <thead>
+            <td>编号</td>
+            <td>书籍名称</td>
+            <td>出版日期</td>
+            <td>价格</td>
+            <td>购买数量</td>
+            <td>操作</td>
+            </thead>
+            <tbody>
+                <tr v-for="(book,index) in books">
+                    <td>{{index+1}}</td>
+                    <td>{{book.name}}</td>
+                    <td>{{book.date}}</td>
+                    <td>{{book.price |addMoneySign}}</td>
+                    <td>
+                        <button  :disabled="!(book.count>1)" @click="delCount(index)">-</button>
+                        {{book.count}}
+                        <button @click="addCount(index)">+</button>
+                    </td>
+                    <td>
+                        <button @click="delItem(index)">移除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        总价：{{allPrice |addMoneySign}}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+
+        const app = new Vue({
+            el:"#app",
+            data:{
+                books:[{
+                    name:"算法导论",
+                    date:"2006-9",
+                    price:85,
+                    count:1
+                },{
+                    name:"linux编程艺术",
+                    date:"2006-2",
+                    price:59,
+                    count:1
+                },{
+                    name:"编程珠玑",
+                    date:"2008-10",
+                    price:39,
+                    count:1
+                },{
+                    name:"代码大全",
+                    date:"2006-3",
+                    price:128,
+                    count:1
+                }]
+            },
+            methods:{
+              delItem(index){
+                this.books.splice(index,1);
+              },
+              delCount(index){
+                this.books[index].count--;
+              },
+              addCount(index){
+                if(this.books[index].count<10)
+                    this.books[index].count++;
+              }
+            },
+            filters:{
+                addMoneySign(price){
+                    return '￥'+price.toFixed(2);
+                }
+            },
+            computed:{
+                allPrice(){
+                    return this.books.reduce(function(preNum,book){
+                        return preNum+book.price*book.count;
+                    },0)
+
+
+
+                }
+            }
+        })
+    </script>
+</body>
+</html>

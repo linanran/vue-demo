@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+        <div v-if="userName">
+            <label for="username">账户登录</label>
+            <input type="text" id="username" key="username" placeholder="请输入账户名" >
+        </div>
+        <div v-else>
+            <label for="usermail">邮箱登录</label>
+            <input type="text" id="usermail" key="usermail" placeholder="请输入邮箱" >
+        </div>
+        <button @click="changeType">切换登录方式</button>
+
+        <div>
+            注意：
+                先输入内容后点击切换，输入框的内容并没有清空，vue这里对重复input进行了复用
+            vue在进行dom渲染是，处于性能的考虑，会尽可能的复用已经存在的元素
+            解决，为input添加key！
+            v-show与v-if的区别：
+                隐藏与不存在的区别
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:"#app",
+            data:{
+                message:"hello world",
+                userName: true
+            },
+            methods:{
+                changeType(){
+                    this.userName=!this.userName;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

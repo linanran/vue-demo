@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    app:{{num1}} <br>
+    <cpn :number1="num1" @change="cpnClick"></cpn>
+</div>
+<template id="cpn">
+    <div>
+        <input type="text" v-model="dnumber1">
+        <h3>{{dnumber1}}</h3>
+        props:{{number1}}
+    </div>
+</template>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"hello world",
+            num1:1,
+            num2:0
+        },
+        methods:{
+          cpnClick(number){
+            this.num1=number;
+          }
+        },
+        components:{
+            cpn:{
+                template:'#cpn',
+                props:{
+                    number1:Number,
+                    number2:Number
+                },
+                data(){
+                    return {
+                        dnumber1:this.number1,
+                    }
+                },
+                //监听数据的改变
+                watch:{
+                    dnumber1(newNumber){
+                        if(newNumber!=""){
+                            this.dnumber1=parseInt(newNumber);
+                            this.$emit("change",this.dnumber1);
+                        }
+                    }
+                },
+            }
+        }
+    })
+</script>
+</body>
+</html>

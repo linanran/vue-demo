@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*table,td{*/
+        /*    border: 1px solid white;*/
+        /*}*/
+        .
+    </style>
+</head>
+<body>
+<div id="app">
+    <h3>1,vue基础</h3>
+    <pre>
+        模版语法:{{}}
+        事件绑定
+        列表显示
+        指令合集
+    </pre>
+    <h3>2,动态属性绑定，各类属性的绑定</h3>
+    <h3>3，计算属性</h3>
+    <h3>4，修饰符：stop、prevent、enter、</h3>
+    <h3>5，双向绑定、值绑定，与各类表单元素的使用</h3>
+    <h3>5，列表点击变红案例</h3>
+    <h3>6，登陆切换案例：条件判断</h3>
+    <h3>7，购物车案例：循环遍历、值绑定</h3>
+    <h3>8，修饰符。lazy、number、trim</h3>
+    <h3>9，组件化开发：全局组件、局部组件</h3>
+    <h3>10，父子组件访问</h3>
+    :disable 指令=>html属性disable，动态绑定disable属性
+    toFixed：指定小数位数
+    watch：监听数据的改变
+
+    <table>
+        <tr>
+            <td>编号</td>
+            <td>书籍名称</td>
+            <td>出版日期</td>
+            <td>价格</td>
+            <td>购买数量</td>
+            <td>操作</td>
+        </tr>
+        <tr v-for="(item,index) in books">
+            <td>{{parseInt(index)+1}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.date}}</td>
+            <td>{{item.price|showPrice}}</td>
+            <td>
+                <button :disabled="item.count<1" @click="reduceCount(item)">-</button>
+                {{item.count}}
+                <button @click="addCount(item)">+</button>
+            </td>
+            <td>
+                <button @click="deleteBook(index)">移除</button>
+            </td>
+        </tr>
+        <tr>
+
+        </tr>
+    </table>
+    总价：{{totalPrice|showPrice}}
+</div>
+<template id="temp">
+    <div>
+
+    </div>
+</template>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    /*
+    1,列表循环，显示所有图书及信息
+    2,价格计算
+    3，数量增加与减少事件
+     */
+    let temp={
+        template:"#temp",
+        data(){
+
+        }
+    }
+    let app=new Vue({
+        el:"#app",
+        data:{
+            books:[{
+                name:"算法导论",
+                date:"2006-9",
+                price:85,
+                count:1
+            },{
+                name:"linux编程艺术",
+                date:"2006-2",
+                price:59,
+                count:1
+            },{
+                name:"编程珠玑",
+                date:"2008-10",
+                price:39,
+                count:1
+            },{
+                name:"代码大全",
+                date:"2006-3",
+                price:128,
+                count:1
+            }]
+        },
+        methods:{
+            addCount(item){
+                item.count++;
+            },
+            reduceCount(item){
+                item.count--;
+            },
+            deleteBook(itemIndex){
+                this.books.splice(parseInt(itemIndex),1);
+            }
+        },
+        computed:{
+            totalPrice(){
+                return this.books.reduce(function(num,item){
+                    return num+item.price*item.count;
+                },0);
+            }
+        },
+        component:{
+
+        },
+        filters:{
+            showPrice(price){
+                return "¥ "+price.toFixed(2);
+            }
+        }
+    })
+</script>
+</body>
+</html>

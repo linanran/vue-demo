@@ -1,0 +1,160 @@
+在底层的实现上，Vue 将模板编译成虚拟 DOM 渲染函数。结合响应系统，Vue 能够智能地计算出最少需要重新渲染多少组件，并把 DOM 操作次数减到最少。
+
+
+
+5，数组中哪些方法是响应式的？
+
+push、pop（删除最后一个元素）、shift（删除第一个元素）、unshift（在数组最前面添加元素）、splice
+
+不能做到响应式的：通过下标修改数据
+
+解决办法，通过splice修改
+
+6，上述的方法都可以设置多个元素，即：添加多个，删除多个，因为”可变参数“的存在
+
+function(...numbers){}  这里numbers可以接收多个参数
+
+7，splice的参数
+
+第一个参数：操作位置的下标
+
+第二个参数：删除的个数
+
+第三个及后面的参数：增加的项
+### 2.2.4，v-text
+
+下面为元素属性的控制
+
+### 2.2.7，v-bind属性值绑定
+
+class属性的四种绑定方式
+
+```jsx
+<body>
+<div id="app">
+  {{message}}
+  //1，样式写法
+  <div :style="{fontSize:'50px'}">test</div>
+  //2，变量值写法
+  <div :style="{fontSize:fSize+'px'}">test2</div>
+  //3，变量写法
+  <div :style="baseFont">TEST</div>
+  <!--4，数组写法-->
+  <div :style="[baseStyle,baseFont]">TEST</div>
+</div>
+
+<script>
+  const app = new Vue({
+    el:"#app",
+    data:{
+      message:"hello world",
+      fSize:50,
+      baseStyle:{background:'red'},
+      baseFont:{fontSize:'28px'}
+    }
+  })
+</script>
+```
+
+### 2.2.8,v-on事件处理
+
+简写@
+
+用法：
+
+@click="test"
+
+传参问题：
+
+1，test为方法，在不需要传参的情况下可以不加括号,在形参中有属性的情况下，第一个参数默认为event
+
+2，添加括号但没有传参的情况下,形参中有属性的情况下，参数为undefined
+
+3，传递参数的情况下，第一个参数传参
+
+4,如何传递event，$event
+
+修饰符：
+
+使用：
+
+@click.prevent=""
+
+跟在click-事件名称后面
+
+特点：
+
+可以串联
+
+@click.prevent.stop
+
+常用的修饰符：
+
+。prevent：阻止默认事件
+
+。stop: 阻止冒泡
+
+。native：自定义组件必须要添加该修饰符才能被监听
+
+其他：
+
+。capture
+
+。self
+
+。onece：只触发一次回调
+
+。passive
+
+键盘事件
+
+@keyup=”“
+
+keyCode 的事件用法已经被废弃了并可能不会被最新的浏览器支持。
+
+为了在必要的情况下支持旧浏览器，Vue 提供了绝大多数常用的按键码的别名：
+
+- `.enter`
+- `.tab`
+- `.delete` (捕获“删除”和“退格”键)
+- `.esc`
+- `.space`
+- `.up`
+- `.down`
+- `.left`
+- `.right`
+
+新增修饰符
+
+- `.ctrl`
+- `.alt`
+- `.shift`
+- `.meta`
+
+exact 修饰符：
+
+精确的意思，修饰符由精确的系统修饰符组合才能出发
+
+鼠标修饰符：
+
+- `.left`
+- `.right`
+- `.middle`
+
+### 2.2.9，v-if条件渲染
+
+是否渲染元素
+
+v-if v-if-else  v-else
+
+### 2.2.10,v-show与v-if
+
+v-if是是否渲染显示，v-show是是否显示-隐藏或显示
+
+,循环遍历
+
+### 2.2.11，v-model表单值绑定
+
+双向绑定与值绑定
+
+双向绑定的原理：v-bind 与v-on的结合

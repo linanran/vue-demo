@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*input,select{*/
+        /*    background: black;*/
+        /*}*/
+    </style>
+</head>
+<body>
+    <div id="app">
+        修饰符 .lazy  回车后绑定值 <br>
+        修饰符 .trim修饰符的作用就是去掉前后的空格
+        <input type="text" v-model.lazy.trim="message"> <br>
+        修饰符.number:使输入类型为number类型，默认将内容当作string类型
+        age:<input type="number" v-model.number="age"> <br>
+        age值：{{age}} <br>
+        age值类型：{{typeof age}}
+        <hr>
+        message值：
+        "{{message}}"
+        <hr>
+        <label for="radioTest">男
+        <input id="radioTest" type="radio" v-model="sex" value="男"></label>
+        <label for="radioTest2">女
+        <input id="radioTest2" type="radio" v-model="sex" value="女"></label>
+        <br>sex值为：
+        {{sex}}
+        <hr>
+        单个checkbox
+        <label for="checkboxT">
+            <input id="checkboxT" type="checkbox" value="apple" v-model="checkboxValue">苹果
+        </label>
+        <br>checkboxValue为：
+        {{checkboxValue}}
+        <hr>
+        多个checkbox
+            <input type="checkbox"  v-model="checkboxValues" value="apple">苹果
+            <input type="checkbox"  v-model="checkboxValues" value="banana">香蕉
+            <input type="checkbox"  v-model="checkboxValues" value="pear">梨子
+            <input type="checkbox"  v-model="checkboxValues" value="lizhi">荔枝
+        <br>
+        checkBoxValues值：
+        {{checkboxValues}}
+        <hr>
+        select类型 <br>
+        单个
+        <select name="color" id="color" v-model="selectValue">
+            <option value="purple">紫色</option>
+            <option value="red">红</option>
+            <option value="black">黑</option>
+            <option value="white">白</option>
+            <option value="orange">橘色</option>
+        </select>
+        selectValue值：
+        {{selectValue}}<br>
+<!--        多个：<br>-->
+<!--        加入multiple属性，然后按住ctrl键选择多个 <br>-->
+<!--        <select name="color" id="colors" v-model="selectValues" multiple>-->
+<!--            <option value="purple">紫色</option>-->
+<!--            <option value="red">红</option>-->
+<!--            <option value="black">黑</option>-->
+<!--            <option value="white">白</option>-->
+<!--            <option value="orange">橘色</option>-->
+<!--        </select>-->
+<!--        selectValues值：-->
+<!--        {{selectValues}}-->
+        <hr>
+        值绑定：<br>
+        <select name="color" id="colorItems">
+            <option v-for="item in selectItems" :value="item">{{item}}</option>
+        </select>
+<!--        列表显示对象值-->
+        <hr>
+        列表显示对象值:
+        <ul>
+            <li v-for="(value,key) in colorsValue">{{value}}:{{key}}</li>
+        </ul>
+<!--        值绑定修改上面的颜色选择-->
+        <select name="color" id="colors2" v-model="selectValues" multiple>
+            <option v-for="(value,key) in colorsValue" :value="key">
+               {{value}}
+            </option>
+        </select>
+        selectValues值：
+        {{selectValues}}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:"#app",
+            data:{
+                message:"hello world",
+                sex:'',
+                colorsValue:{purple:"紫色",red:"红色",black:"黑色",white:"白色",orange:"橘色"},
+                checkboxValue:'',
+                checkboxValues:[],
+                selectItems:["purple","red","black","white","orange"],
+                selectValue:'purple',
+                selectValues:[],
+                age:15
+            }
+        })
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+       <cpn></cpn>
+        <cpn>
+            <template v-slot="slot">
+                <span v-for="item in slot.data">{{item+" - "}}</span>
+            </template>
+        </cpn>
+    </div>
+    <template id="cpn" >
+        <div>
+            <slot :data="movies">
+                <ul>
+                    <li v-for="item in movies">{{item}}</li>
+                </ul>
+            </slot>
+        </div>
+    </template>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:"#app",
+            data:{
+                message:"hello world"
+            },
+            components:{
+                cpn:{
+                    template:'#cpn',
+                    data(){
+                        return {
+                            movies:['aaa','bbb','ccc','ddd']
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

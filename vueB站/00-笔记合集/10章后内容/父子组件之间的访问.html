@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <temp ref="temp"></temp>
+    <button @click="getChild">go</button>
+    <temp></temp>
+</div>
+<template id="temp">
+    <div>
+       zi:{{name}}
+    </div>
+</template>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    /*
+    案例：
+        拿到子组件的对象，调用子组件的方法
+        1，在子组件中设置方法和数据
+        2，父组件中，设置一个按钮,获取子组件，并打印打印内容和调用方法
+     */
+    let temp ={
+        template:"#temp",
+        data(){
+            return{
+                name:"someone like you!",
+                pLanguage:['javascript','c++','javea','c#']
+            }
+        },
+        methods:{
+            dosomething(){
+                console.log("Everything will be ok!");
+            }
+        }
+    }
+    let app = new Vue({
+        el:"#app",
+        data:{
+
+        },
+        methods:{
+            getChild(){
+                console.log(this.$children);
+                // this.$refs.temp.dosomething();
+                // console.log(this.$refs.temp.name);
+            }
+        },
+        components:{
+            temp
+        }
+    })
+</script>
+</body>
+</html>

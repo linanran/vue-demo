@@ -1,0 +1,41 @@
+### 作用域插槽
+
+1. 编译的作用域
+
+    模板下的变量只控制模板下的元素，Vue实例只控制绑定元素下的元素
+
+2. 作用域插槽
+    - 同样的数据在不同的页面以不同的方式展示
+    - 内容在子组件，希望父组件告诉我们如何展示
+
+    可以通过作用域插槽获取子组件中的数据
+
+    - 子组件模板中添加slot标签 并绑定:data属性，属性值为要传递的变量
+    - 父组件中在模板标签中添加template标签，并设置v-slot="slot"
+    - 使用传递过来的值：slot.data
+3. 使用步骤
+    1. 设置默认显示的插槽
+    2. 传递数据给父组件
+
+        ```jsx
+        <slot :data="movies">
+            <ul>
+                <li v-for="item in movies">{{item}}</li>
+            </ul>
+        </slot>
+        ```
+
+    3. 父组件建立template接收数据 v-slot=“data”
+    4. 父组件使用slot.data
+
+        ```jsx
+        <template v-slot="slot">
+            <span v-for="item in slot.data">{{item+" - "}}</span>
+        </template>
+        ```
+
+4. 注
+
+    数组的join方法
+    //在数组的每个项之间增加内容
+    {{slot.data.join(" - ")}}

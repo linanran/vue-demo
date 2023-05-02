@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .a{
+            color: purple;
+        }
+        .b{
+            size:28px;
+        }
+        .c{
+            border:1px solid black;
+        }
+        .d{
+            margin-top:100px;
+        }
+        button{
+            font-size:28px;
+            padding: 10px;
+        }
+        .buttonColor1{
+            background-color: red;
+        }
+        .buttonColor2{
+            background-color: goldenrod;
+        }
+        .buttonColor3{
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+<!--    动态属性绑定：v-bind-->
+    {{message}}
+    <div :id="idName"></div>
+<!--    对象语法-->
+    <div :class="{a:aT, b:bT, c:cT, d:dT}">YYSD</div>
+<!--    函数写法-->
+    <div :class="getClass()">OOOEEE</div>
+<!--    数组语法-->
+    <div v-bind:class="[activeClass, errorClass]">CCDD</div>
+<!--    值写法-->
+    <div v-bind:class="activeClass">MNN</div>
+<!--    对象写法-->
+    <button :class="{buttonColor1,buttonColor2,buttonColor3}" @click="changeColor">Test</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"hello world",
+            idName:"content1",
+            aT:true,
+            bT:true,
+            cT:true,
+            dT:true,
+            buttonColor1:true,
+            buttonColor2:false,
+            buttonColor3:false,
+            activeClass: 'a',
+            errorClass: 'b'
+        },
+        methods:{
+            changeColor:function(event){
+                if(this.buttonColor1){
+                    this.buttonColor1=false;
+                    this.buttonColor3=false;
+                    this.buttonColor2=true;
+                }else if(this.buttonColor2){
+                    this.buttonColor2=false;
+                    this.buttonColor1=false;
+                    this.buttonColor3=true;
+                }else if(this.buttonColor3){
+                    this.buttonColor3=false;
+                    this.buttonColor2=false;
+                    this.buttonColor1=true;
+                }
+            },
+            getClass:function(){
+                return {a:this.aT,b:this.bT,c:this.cT,d:this.dT};
+                //返回数组
+                // return [this.activeClass,this.errorClass]
+            }
+        }
+    })
+</script>
+</body>
+</html>

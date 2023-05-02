@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        button{
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    {{message}}
+    <cpn><button slot="before">案例</button></cpn>
+
+</div>
+<template id="cpn">
+    <div>
+
+        <slot name="before"></slot>
+        slot让组件具有扩展性
+        <!--        插槽默认只会替换没有名字的-->
+        <slot></slot>
+    </div>
+</template>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"hello world"
+        },
+        components:{
+            cpn:{
+                template:"#cpn"
+            }
+        }
+    })
+</script>
+</body>
+</html>

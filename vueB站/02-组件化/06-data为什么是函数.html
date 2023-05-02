@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{message}}
+<!--
+    1,多次调用同一个组件，每个组件要有自己的data
+    2，只有data是函数，返回的是对象，每个组件才能有自己的data
+    3,vue规定了模板中的data只能是函数，且值通过return返回定义
+-->
+    <cpn1></cpn1>
+    <cpn1></cpn1>
+</div>
+<template id="cpn">
+    <div>
+        <h2>计数器</h2>
+        {{counter}}
+        <button @click="add">+</button>
+        <button @click="del">-</button>
+    </div>
+</template>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    Vue.component('cpn1',{
+        template:'#cpn',
+        methods:{
+          add(){
+              this.counter++;
+          },
+            del(){
+              this.counter--;
+            }
+        },
+        data(){
+            return {
+                counter:0,
+            }
+        }
+    });
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"hello world"
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="item in letters">{{item}}</li>
+    </ul>
+    <button @click="changeItems">change</button>
+</div>
+<script>
+    let app = new Vue({
+      el:"#app",
+      data:{
+        letters:['a','b','c','d']
+      },
+      methods:{
+        changeItems(){
+            //不会响应式改变页面中的内容
+            // this.letters[0]='aaa';
+
+            //响应式
+            this.letters.push("aaa");
+            //删除最后一位
+            this.letters.pop();
+            //删除第一位
+            this.letters.shift();
+            //在第一位添加元素
+            this.letters.unshift("aaa");
+            this.letters.splice(0,1,"aaa")
+        }
+      },
+      computed:{
+
+      }
+    })
+</script>
+</body>
+</html>

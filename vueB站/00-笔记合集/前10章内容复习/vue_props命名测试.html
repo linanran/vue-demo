@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    wo shi fu zujian!!!
+    {{appNum}}
+    <temp :tempNumFromFu="appNum"></temp>
+</div>
+<template id="temp">
+    <div>
+        wo shi zu zujian!
+        laizi fuzujian de shuju:{{tempnumfromfu}}
+
+    </div>
+</template>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    /*
+    vue中props命名测试
+    tempnumfromfu：全小写可以
+    tempNumFromFu：第一个小写版驼峰写法，不可以
+    TempNumFromFu：驼峰写法及带大写不可以
+    tempnum-fromfu：会直接报错
+     */
+    let temp={
+        template:"#temp",
+        props:{
+            tempnumfromfu:Number
+        }
+    }
+    let app=new Vue({
+        el:"#app",
+        data:{
+            appNum:1
+        },
+        methods:{
+
+        },
+        components:{
+            temp
+        },
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{message}}
+    <div :style="{fontSize:fSize+'px'}">test2</div>
+    <div :style="baseFont">TEST</div>
+<!--    v-style的数组形式-->
+    <div :style="[baseStyle,baseFont]">blue</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"hello world",
+            fSize:50,
+            baseStyle:{background:'red',color:'blue'},
+            baseFont:{fontSize:'28px'}
+        }
+    })
+</script>
+</body>
+</html>

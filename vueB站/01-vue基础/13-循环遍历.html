@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{message}}
+    列表显示1：
+    <ul>
+        <li v-for="item in movies">{{item}}</li>
+    </ul>
+    列表显示2：
+    <ul>
+        <li v-for="(item,index) in movies">{{(index+1)+"."+item}}</li>
+    </ul>
+    列表显示3：循环遍历对象
+    <ul>
+        <li v-for="item in obj">{{item}}</li>
+    </ul>
+    列表显示4：循环遍历对象
+    <ul>
+        <li v-for="(item,key,index) in obj">{{(index+1)+"."+key+":"+item}}</li>
+    </ul>
+    数组中哪些方法是响应式的？也就是更改数组，页面会同步
+    push、pop（删除最后一个元素）、shift（删除第一个元素）、unshift（在数组最前面添加元素）、splice
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"hello world",
+            movies:["test1","test2","test3","test4"],
+            obj:{
+                name:"qml",
+                age:25,
+                mail:"1445214859@qq.com",
+                address:"guangzhou"
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        button{
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    {{message}}
+    <cpn><button>案例</button></cpn>
+    <cpn> <i>test</i></cpn>
+    <cpn></cpn>
+    <cpn>
+        <button>案例</button>
+        <i>test</i>
+    </cpn>
+</div>
+<template id="cpn">
+    <div>
+        <slot>默认值</slot>
+        slot让组件具有扩展性
+    </div>
+</template>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    /*
+    ### 插槽的基本使用
+
+插槽可以提高组件的复用性，组件中不同的内容可以使用插槽插入
+
+在使用模板时，模板标签之间插入的内容不会显示，只有在模板中增加了slot标签，插入的内容替换slot标签显示
+     */
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"hello world"
+        },
+        components:{
+            cpn:{
+                template:"#cpn"
+            }
+        }
+    })
+</script>
+</body>
+</html>

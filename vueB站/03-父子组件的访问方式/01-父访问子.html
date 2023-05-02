@@ -1,0 +1,59 @@
+<!--### 父组件向子组件传递数据
+
+- 在父组件中定义数据
+- 将子组件插入节点中并绑定父组件的数据-代码第二行
+- 给子组件添加props属性，定义父组件传递过来的数据
+- 在子组件模板中使用数据
+
+注意：
+
+传递变量的名称必须是小写或用-连用
+
+props中变量类型写错会报错
+
+对象类型的默认值写法与普通变量不同，如下所示，cinfo是父组件中的一个对象数据
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button @click="btnClick">按钮</button>
+<!--    通过添加ref属性获取子组件 一般都用这个方式-->
+    <cpn ref="aaa"></cpn>
+</div>
+<template id="cpn">
+    <div></div>
+</template>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"hello world"
+        },
+        methods:{
+            btnClick(){
+                //$children[0].name
+                this.$children[0].showMessage();
+                console.log(this.$refs);
+            }
+        },
+        components:{
+            cpn:{
+                template:"#cpn",
+                methods:{
+                    showMessage(){
+                        console.log("showMessage");
+                    }
+                }
+            },
+
+        }
+    })
+</script>
+</body>
+</html>

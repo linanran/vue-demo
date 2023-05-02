@@ -1,0 +1,156 @@
+    12.3日
+建议标签时写结尾标签，以免出现不显示的问题
+第11章：与父子组件的通信，传递数据不同
+访问方式：
+    拿到子组件的对象，调用子组件的方法
+    $children：几乎不用，难以拿到具体某个子组件
+    $refs：用的最多 默认是空的对象，需要添加在子组件中添加ref属性
+        this.$refs.aaa.name
+    $parent：很少用
+    $root:访问根组件-vue实例：很少用
+    出现的问题，我将refs放在了temlate标签上，实际写在父组件的子组件标签上。
+    最终的问题是：父组件中的多个同一子组件，我们看着是一样的，来自的模版一样，内容一样
+    标签一样，但对于父组件来说就像一个别的组件一样。是一个新的组件。
+    当下只能以此来解释为什么refs属性不是放在template标签即子标签上。而是父组件下的子标签上。
+第十二章：插槽slot：对原有的内容进行扩展，以及决定组件显示什么
+    使用场景：
+        在一个父组件中多次使用一个子组件，虽然使用了同一个组件，但内容会有些许不同
+        那些不同的部分就可以通过插槽来实现
+        即：公共的部分使用同一个组件，不同的部分通过插槽来完成。
+        网站的公共部分：导航栏，但每个页面的导航栏不一样，
+    如何使用：
+        1，在父组件中的自组件标签中添加内容
+        2，在自组件中添加slot标签，
+        第二种使用情况：当父组件多次使用子组件时，增加的内容是一样的，
+        可以将内容加入到自组件的插槽标签中，即子组件默认增加了部分内容，
+        当父组件中的自组件中也增加了部分内容就会覆盖子组件中的内容
+        第三种使用情况：
+        当子组件标签中添加了多份内容，会全部覆盖子组件中的默认内容
+        第四种使用情况：
+            当子组件中的插槽标签有多个且内容为a，父组件中的子组件标签内容只有一个时（为b）
+            内容会匹配给多个插槽标签，显示多份插槽内容b
+            解决：给插槽取名：给子组件的插槽标签使用name属性，
+                在子标签中内容标签中添加slot属性
+            见具名插槽的使用
+    另：
+        遇到问题搜索的网站
+            github、stack ouverflow
+    编译作用域：
+        作用域为当前的模版，在父组件的自组件中使用变量会在父组件中查找，不会去子组件中找
+    作用域插槽
+        子组件标签中的内容替换插槽标签，但内容由子组件来提供
+作用域插槽的作用：
+    可以拿到子组件中的数据
+    使用场景：子组件有一份数据，向要以不同的方式展示在父组件中
+        1，在子组件中添加slot标签，绑定data属性，值为展示变量，并写上默认展示内容的方式
+        2，在父组件的子组件标签中添加template标签，vue2.5以后的版本可以使用其他标签如：div
+            在template标签中添加slot-scope标签，值为slot，在标签中即可通过slot.data操作
+            子组件中的数据
+            join函数：在数组中的每一项中间添加某个字符作为一个字符串返回。
+模块化开发
+    解决多人开发时 命名冲突问题 自己的变量可能被别人修改了
+    解决问题：闭包
+    闭包的问题：不可以使用已有的代码内容，不具有代码复用性
+    另一种解决办法：导出对象
+        1，将匿名函数复制给某变量并立即执行
+        2，在函数体中创建一个对象，将该函数体内的变量与方法赋值给该对象，并返回
+    最终：
+        框架中已有定义模块化，根据框架规定使用模块化
+    模块化规范：只包含规范，不包含实现
+        commonjs、amd、cmd、es6Modules
+    P74-75 跳过
+webpack
+    作用：处理模块之间的依赖，将多个js文件打包成一个js文件
+    模块、打包
+    npm：
+    nodejs的包管理工具
+    安装 npm webpack@版本号 -g（全局安装）
+    包含的文件夹：
+        src：源码
+        dist：打包发布文件
+        index。html：可以通过工具将index在发布时放入到dist中打包
+    1，导出
+    2，使用webpack打包
+        webpack 打包的文件 打包后的文件路径及文件名
+        webpack会将目录下的多个文件打包成为一个文件
+    3，使用打包后的文件
+        引入，通过js引入
+    webpack做了什么？
+    使用的导入导出指令，浏览器不认识，需要通过webpack打包成浏览器认识的文件
+    webpack会自动处理模块之间的依赖
+    P77重看！！！！！
+    webpack配置：
+        webpack.config.js文件
+    生成npm包依赖文件：package.json，其中还包括了命令的映射（将一长串的命令映射到一个单词中）
+        npm init
+    建立默认打包的文件及目标文件，使用webpack就可以完成打包任务
+        通过在package。json中配置，结合webpack。config。js
+    webpack和npm命令映射
+        执行npm run ***的时候自动打包
+        ***：为一长串的指令，一般为serve
+    全局与局部安装webpack：
+    推荐局部安装webpack，因为不同人写的代码依赖的webpack版本不一样，
+    当前的代码可能依赖的是低版本的webpack
+    --save -dev：表示是开发时依赖，项目打包后不需要急需使用
+    package.json内容解释：
+            devDependencies：表示开发阶段依赖的包及版本
+            dependencies：表示运行时依赖的包及版本
+        node_modules：安装的依赖包集合
+    如何使用本地的webpack：
+        在终端使用webpack默认都是全局的
+        只有通过配置后默认才会优先使用局部的即本地，即node_modules中
+    全局是什么意思？
+        全局安装：npm install xxx -g
+        本地安装：npm install xxx
+        1、全局安装 表示吧我们需要的依赖或者是一个工具安装到npm这个软件的目录下 这样我们电脑上的任何项目都可以使用这个依赖或者工具 比如说我们要安装vue 就会使用全局安装 这样就可以在左面上右击开启命令行的时候输入vue命令：如vue cli 开启可视化面板
+        2、本地安装 就是安装到我们当前项目文件夹中 即依赖会被下载安装到本地文件夹中的node_module中 这样安装的依赖就只有本地项目可以使用 不同文件夹下的项目就不能使用这个依赖或者工具
+    webpack loader：css打包支持
+        很多事情，比如，文件转换，webpack并不支持
+        扩展webpack
+        webpack中使用css文件配置
+        入口文件放在外层，不要放入多个文件jia内
+        如何将css文件打包：P79
+            将css文件当做一个模块
+        官网：
+        org结尾：非盈利组织
+        com：中国翻译后的网站
+        css-loader
+        安装：npm install --save-dev css-loader
+        在webpack。config。js中配置，配置内容见官网
+        css-load只负责加载，不会编译给浏览器。
+        =》安装npm install style-loader --save-dev
+        webpack在使用多个loader时，是从右向左读取，因此配置文件中css-loader写在右边，
+        style-loader写在左边。具体配置内容见：P79 20.47。
+    less文件处理：webpack官网
+        安装：less-loader
+        npm install --save-ev less-loader less
+        配置：略
+    图片处理：url-loader、file-loader
+        url-loader
+        webpack会根据图片大小对图片进行处理
+        小于limit属性会将图片编译成base4字符串形式
+        大于会使用file-loader
+        一般将大小设置为8kb
+        安装：
+        npm install --save-ev less-loader less
+        配置路径：视频-24.40
+            publicPath：'dist/'
+        webpack会给图片自动生成一个很长的的成名用来防止文件名重复
+        这样会造成阅读障碍不知道原本图片的含义
+        因此，可以使用：img/name.hash  文件名+名称：在哈希名称前保留原来的图片名称
+        配置webpack命名规范：
+    es6转es5：打包时将es6转es5以适应那些不能使用es6的浏览器
+    babel-loader
+        npm install --save-dev babel-loader @7 babel-core babel -preset -se2015
+    配置webpack.config.js
+
+模块化使用vue。js
+    1，npm 安装vue
+    2，引入vue
+    3，使用时报错：未懂
+        因为存在两个vue版本
+        指定vue版本
+使用vue文件
+    安装vue-loader和vue-compiler；-dev 表示仅开发时使用
+    npm install --save-dev vue-loader vue-template-compiler
+剩下的内容在vueTest项目中

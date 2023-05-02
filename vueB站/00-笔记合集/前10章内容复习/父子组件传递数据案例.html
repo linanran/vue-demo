@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    传之前的值：{{appNum}}
+    <temp :tempnumfromfu="appNum" @sendnum="changeAppNum"></temp>
+    wo shi fu zujian!!!
+    传之后的值：{{appNum}}
+</div>
+<template id="temp">
+    <div>
+        wo shi zu zijian!
+        laizi fuzujian de shuju:{{tempnumfromfu}}
+        <input type="text" :value="numberFu" @input.Number="changeNum">
+    </div>
+</template>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    /*
+    案例内容：父传子，子改变数据，传回给父。
+    1,创建自组件，显示自组件
+    2，父组件显示数据，并传递给子组件
+        1,props
+        2,在父组件中的子组件元素上动态绑定数据
+    3，在子组件中添加input，并动态绑定父组件中的数据
+    4,在自组件中使用$emit将数据传给父组件
+        1,子组件中，$emit
+        2,父组件中自定义事件,命名只能时小写
+     */
+    let temp={
+        template:"#temp",
+        props:{
+            tempnumfromfu:Number
+        },
+        data(){
+          return{
+            numberFu:this.tempnumfromfu
+          }
+        },
+        methods:{
+            changeNum(event){
+                if(event.target.value!=""){
+                    this.numberFu=parseInt(event.target.value);
+                    // console.log(typeof event.target.value);
+                    this.$emit("sendnum",this.numberFu);
+                }
+            }
+        }
+    }
+    let app=new Vue({
+        el:"#app",
+        data:{
+            appNum:1
+        },
+        methods:{
+            changeAppNum(newNum){
+                console.log(newNum);
+                this.appNum=newNum;
+
+            }
+        },
+        components:{
+            temp
+        },
+    })
+</script>
+</body>
+</html>

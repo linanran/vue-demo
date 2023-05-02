@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>说明</title>
+</head>
+<body>
+    <pre>
+    此项目为vue美团网开发第二、三、四、五章内容
+    ***koa2
+    ***async与await：index.js
+    ***mongoDB,mongoose
+    ***redis
+    一、具体内容：
+        [3-1]
+        0,koa
+        基于nodejs平台的下一代web开发框架
+        1,安装：npm install -g koa-generator
+        2,创建项目：koa2 -e 项目名称
+        3,进入项目，执行安装 npm install，根据提示二次安装
+        4,app.js启动文件
+        5，根据提示启动项目：
+        run ....
+        启动完成后提示：node bin/www
+        访问网页，hello koa2，
+        它的启动脚本是npm script ，默认运行方式为“start”
+        6，global.console.log('index'),node中的global相当于window，一个全局对象
+        7，为了使代码修改刷新页面能看到变化，一般启动方式用：npm run dev
+        8，   start和test可以直接用npm start和npm test运行，而dev和prd需要用npm run dev和npm run prd。
+        [3-2]
+        9，async和await在koa2中的用法，见代码index.js及注释内容
+        [3-3]koa2中间件
+        原理：
+        见middleware下的m1 2 3文件
+        [3-4]koa-路由
+        见index.js users.js index.ejs
+        cookie的存储与获取
+    二、mongoDb和redis基础-11.19
+        1，安装与启动
+            先安装brew:略
+            安装mongoDB：brew install mongodb-community@4.4（4.4为版本号）
+               安装报错：安装xcode-select=》xcode-select --install
+            brew启动mongodb服务：brew services start mongodb-community@4.4
+            brew停止mongodb服务：brew services stop mongodb-community@4.4
+
+            数据库可视化界面：Roto 3T
+        2，通过mongoose操作mongoDB
+            测试内容：dbs文件夹下的文件
+            1,设置配置文件，config.js
+            2，引入mongoose与mongoose配置文件 app.js
+            3，koa2 node服务与数据库连接 app.js
+            4，启动服务，连接数据库，npm run dev
+        3，对数据库进行数据操作
+            uers.js
+            增加
+            curl -d 'name=lily&age=25' http://localhost:3000/users/addPerson
+            shell命令，-d表示post方式，数据 post接口地址
+            刷新Robo数据，查看Collections
+            查询
+            curl -d 'name=lily' http://localhost:3000/users/getPerson
+            修改
+            curl -d 'name=lily&age=18' http://localhost:3000/users/updatePerson
+            删除
+            curl -d 'name=lily' http://localhost:3000/users/deletePerson
+        4,redis概念与安装
+            1,安装与启动
+            服务端用session保持用户的状态，客户端用cookie保存session，服务器吧session种植到cookie中
+            下次访问时，cookie会带着session到服务端，以达到身份认证
+            redis：简单 快速 有一定容量的数据库，用来存储session
+            安装：brew install redis
+            启动：brew services start redis  或者 redis-server
+            两个中间件：npm i koa-generic-session koa-redis
+            第一个用来操作session，第二个用来连接redis
+            2，通过koa-generic-session 以对象的形式设置session
+            启动数据库服务，启动redis服务，koa-pv设置用户访问次数，打开页面可以看到koa.sid,koa.sid.sig
+            通过设置session名称修改koa.sid 为mt和mt.sig
+            3，直接通过命令行查看redis中的数据：
+            启动redis：redis-cli
+            查看当前存储的值：keys *（表示所有key值）
+            （redis的数据存储特征就是key 与value）
+            4，获取key值：get key值
+            5，count案例-待整理
+            得到一个对象，对象的count值为三，因为刷新页面发送了两次请求所以
+            6，直接操作redis
+            新建一个接口fix users.js，创建redis对象Store
+            新增session值:Store.hSet
+            直接访问get端口：
+            curl http://localhost:3000/users/fix
+            查看所有session：key *
+            查看上面设置的fix session的值：hget fix name
+            redis的两种使用方式：
+            a,session对象，最常见，操作session
+            b,redis对象，作为数据库存储数据
+            7，redis命令，见文档
+        
+
+    </pre>
+</body>
+</html>

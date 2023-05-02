@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{message}}
+    普通修饰符
+    。prevent：阻止默认事件
+    。stop: 阻止冒泡
+    略
+    <h3>键盘事件修饰符</h3>
+    <input type="text" @keyup="key">
+    <input type="text" @keyup.enter="key2">
+    其他修饰符同.enter
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"hello world"
+        },
+        methods:{
+            key(event){
+                console.log(event);
+            },
+            key2(){
+                console.log("enter is keyup")
+            }
+        }
+    })
+</script>
+</body>
+</html>

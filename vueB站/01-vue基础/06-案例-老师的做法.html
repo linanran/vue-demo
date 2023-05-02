@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{
+            padding: 5px 20px;
+        }
+        .active{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<!--
+    显示列表 点击其中一项则变成红色
+-->
+<div id="app">
+    {{message}}
+    <ul>
+        <li :class="{active:currentIndex===index}" v-for="(m,index) in movies" @click="changeColor(index)">{{index}}-{{m}}</li>
+    </ul>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"hello world",
+            movies:["test1","test2","test3","test4"],
+            currentIndex:-1
+        },
+        methods:{
+            changeColor:function(index){
+                this.currentIndex=index;
+            }
+        }
+    })
+</script>
+</body>
+</html>

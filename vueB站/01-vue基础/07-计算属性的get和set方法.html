@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{message}}
+    <h2>{{firstName+' '+lastName}}</h2>
+<!--    上面的写法过于繁琐，解决办法如下-->
+    <h2>{{getFullName()}}</h2>
+    <h2>{{fullName}}</h2>
+    <h2>{{fullName2}}</h2>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"hello world",
+            firstName:"TE",
+            lastName:"anran"
+        },
+        methods:{
+            getFullName:function(){
+                return this.firstName+" "+this.lastName;
+            }
+        },
+        computed:{
+
+            fullName(){
+                return this.firstName+" "+this.lastName;
+            },
+            //计算属性本来包含set和get两个方法，但一般不希望通过set改变属性的值，因此一般是没有set方法
+            //如果set方法有些，直接=给变量赋值是会被调用的
+            fullName2:{
+                set:function(newValue){
+                  const name=newValue.splice(' ');
+                  this.firstName=name[0];
+                  this.lastName=name[1];
+                },
+                get:function(){
+                    return this.firstName+" "+this.lastName;
+                }
+
+            }
+        }
+    })
+</script>
+</body>
+</html>

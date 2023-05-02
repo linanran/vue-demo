@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    今天的花销是：<p>{{todayPay}}</p>
+    名称：<input type="text" id="name">
+    <br>
+    <input type="text" id="payValue">
+    <button @click="addItem">add</button>
+</div>
+
+<script>
+    /*
+    计算属性：返回某个属性值的方法，不需要被操作的动态常量
+    比如：有一个常量为今日总账单，我们不需要去管这个常量，因为它自己会根据今日花销自动汇总
+     */
+    let app=new Vue({
+        el:"#app",
+        data:{
+            payName:["chifan","maiyifu","shuiguo "],
+            money:[20,100,26]
+        },
+        methods:{
+            addItem(){
+                let name=document.getElementById("name").value;
+                let payValue=document.getElementById("payValue").value;
+                this.payName.push(name);
+                this.money[this.money.length]=payValue;
+            }
+        },
+        /*
+        计算属性，属性！！！
+         */
+        computed:{
+            todayPay(){
+                let payAll=0;
+                for (let i = 0; i< this.payName.length;i++){
+                    if(this.money[i]!==undefined){
+                        payAll+=parseFloat(this.money[i]);
+                    }
+                }
+                return payAll;
+            }
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+
+    <temp-me :tempNumFromFu="appNum"/>
+</div>
+<template id="tempMe">
+    <div>
+        wo shi zi zujian!
+    </div>
+</template>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    /*
+    vue模版命名测试
+    经过测试：id是可以随意命名的，模版变量名也是可以随意命名的
+    但在使用模版标签时，遇到的大写字母时需要加上-连接符，并将大写改为小写。
+    也就是命名可以任意，但在使用模版标签时不可以出现大写。
+     */
+    let tempMe={
+        template:"#tempMe",
+        props:{
+            tempnumfromfu:Number
+        }
+    }
+    let app=new Vue({
+        el:"#app",
+        data:{
+            appNum:1
+        },
+        methods:{
+
+        },
+        components:{
+            tempMe
+        },
+    })
+</script>
+</body>
+</html>

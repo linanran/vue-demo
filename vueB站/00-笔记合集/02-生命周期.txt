@@ -1,0 +1,37 @@
+1，生命周期
+    vue从创建到结束中经历的几个过程。
+new Vue()时做了很多事，当处于某个生命周期时会调用某个函数，告诉当前的所在生命周期，方便执行此生命周期我们要做的事情
+这里的函数为生命周期~~的~~回调函数：
+beforeCreate
+created
+beforeMount
+mounted(用的比较多)
+beforeUpdate
+updated
+beforeDestroy
+destroyed
+16.生命周期的意义：
+new Vue()时做了很多事
+当处于某个生命周期时调用某个函数，告诉当前的所在生命周期，方便执行此生命周期我们要做的事情
+这里的函数为生命周期~~的回调~~函数：
+created
+beforeCreate
+mounted(用的比较多)
+created(用的比较多)
+hook：钩子函数、回调函数
+钩子函数：
+bind：指令生效时调用，进行初始化设置
+inserted：被绑定的元素插入父节点时调用
+update：值发生变化时触发
+componentUpdate:指令所在组件的Vnode及其子VNode全部更新后 调用
+unbind：指令与函数解绑时调用
+钩子函数的参数：
+el：元素对象
+binding：一个对象
+name：指令名
+value：指令绑定变量的值
+oldValue：变化前的值
+expression：表达式（原本的样子）
+arg：指令的参数
+modifiers：修饰器
+什么时候用自定义指令：这个功能没有复杂到需要用组件来实现，一个表达式又不足以解决

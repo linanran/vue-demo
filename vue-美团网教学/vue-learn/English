@@ -1,0 +1,4 @@
+serve     start development server
+build     build for production
+inspect   inspect internal webpack config
+lint      lint and fix source files

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>说明</title>
+</head>
+<body>
+  <pre>
+    包含内容：
+    ***nuxt.js
+    ***Exlint
+    ***axios
+    ***vuex
+    1,nuxt.js
+    包含的功能：
+        基于vue2，包含了vue router（vue路由），支持 vuex（跨组件整理工具）
+        vue server Render（SSR）、vue-meta（html meta属性的管理）
+    nuxt.js的生命周期-略
+    nuxt.js基于node.js
+    安装：官网
+    nuxt.js with koa,结合koa使用安装nuxtJs：vue init nuxt-community/koa-template 项目名称(nuxt-learn)
+    进入项目：cd nuxt-learn
+    启动项目：npm install
+    启动成功后访问：http://localhost:3000/
+    2,nuxt.js目录
+      assets:静态资源文件，css文件等
+      backpack.config.js:配置文件，不要动
+      build：所有的编译完之后的目录
+      components：vue组件
+      layouts：模板
+      node_modules:安装包
+      nuxt.config.js：nuxt配置文件
+      package-lock：依赖文件说明
+      pages：入口文件，vue文件
+      server：koa相关程序
+      static：静态文件
+      store：放置vuex，只要存在这个目录，则认为启动了vuex（创建即配置）
+    3，路由，页面访问案例
+      路由与pages文件下的文件是对应的
+      http://localhost:3000/ 即index.vue
+      http://localhost:3000/about 即about.vue
+      测试页面serch.vue
+      创建文件nuxt自动做的几件事情：
+      1，做路由映射，serch文件对应路由设置
+      2，将serch.vue作为配置的入口文件
+    4，layouts文件，模板，页面的默认内容
+      一个网站多个页面的公共部分，创建一个文件，这个文件会去找相应的模板文件。只需要增加非公共的内容。
+      default.vue ：没有申明相应的模板时，作为默认模板使用
+    5，新建模板文件
+      layout->serch.vue
+      在page serch.vue页面中使用模板
+    6，css文件的自动引入
+      nuxt.config.js:
+        可以修改页面头、css文件
+      另外：引入单个css文件在，在style @import方式引入文件
+        看 英文文档，版本内容比较新！
+      nuxt英文文档，configuration下面的选项都为可以在nuxt.config.js中配置的选项
+    7，异步数据
+      server目录下的index。js文件
+      在文件中创建一个接口返回一些数据，做异步渲染
+      在项目中安装koa-router  npm i koa-router
+      访问接口：curl http://localhost:3000/city/list
+      在访问过程中因路径写错调试很久：import cityInterface from './interface/city'
+      这里index.js和interface文件同级，前面用./
+    8，异步传输数据
+      serch.vue 创建异步请求
+      安装axios：npm i axios
+      运行显示数据
+      注：代码格式要求很高，格式不对会报一堆的错误，比如：少了或多了空格，多了空行，===写成了==
+      http://localhost:3000/serch 显示数据列表
+    9，vuex案例 nuxt文档的vuex部分
+      store->modules
+      city.js,navbar.js
+      index.js-入口文件
+      注：在访问页面时如果发生报错，先格式化代码（nuxt代码要求很高，多了或少了一个空格都会报错），再重启服务。
+    nuxt.js工作流：incoming request提交请求-》nuxtServerInit判断用户登录状态->middleware中间件-》validate验证路由-》asyncData&fetch获取数据 -》render
+    10，vue SSR工作原理
+      1，SSR概述：快速展示数据
+      2，SSR工作原理
+        老师原话：
+        js工作流最后一步给出的内容：样式，模板内容，静态html内容、数据
+        在服务器中获得的数据会给到客户端页面（在script标签中），如果只给静态数据的话，没有交互，交互在浏览器端完成
+        它有一个入口文件对文件进行编译，但这个编译不会直接渲染页面，因为服务器端的页面已经被渲染过一次了，他要做的是创建虚拟的编译结果，和你给我扔给我的
+        内容做对比，他编译需要的内容：模板、数据。如果不同步数据的话则客户端编译的数据和服务器端编译的数据必然不一样
+        为什么服务端异步获取到的数据再同步给客户端，目的就是为了将两次数据进行对比，如果数据相同则给对应的节点相应的事件，达到交互的目的。
+      3，VUE SSR的渲染流程-后续说
+  </pre>
+</body>
+</html>

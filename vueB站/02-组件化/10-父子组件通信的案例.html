@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    案例说明：
+    子组件从父组件中得到数据，并且在子组件中修改该数据后，父组件中的数据也跟着变化
+
+    <cpn :number1="num1" @change="cpnClick"></cpn>
+    父组件中传递给子组件的值：
+    {{num1}}
+</div>
+<template id="cpn">
+    <div>
+        <input type="text" :value="dnumber1" @input.number="changeNumber">
+
+    </div>
+</template>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    /*
+    案例目的：父组件向子组件中传递数据，子组件对该数据进行数据绑定，改变该数据时父组件中的数据一并改变
+
+步骤：
+
+1. 子组件接收父组件数据
+2. 在子组件data中将父组件绑定的变量赋给新定义的变量（直接改变接收父组件变量的值会报错）
+3. 在表单中绑定这个新定义的变量
+4. 添加input事件，将新定义变量的值以自定义组件的形式传递给父组件
+5. 为什么不用v-model，因为要将输入数据类型改为数字类型且传递数据，需要添加input事件，因此用:value更适合
+     */
+    const cpn={
+        template:'#cpn',
+        props:{
+            number1:Number,
+            number2:Number
+        },
+        methods:{
+            changeNumber(event){
+                if(event.target.value!=""){
+                    this.dnumber1=parseInt(event.target.value);
+                    this.$emit("change",this.dnumber1);
+                }
+            }
+        },
+        data(){
+            return {
+                dnumber1:this.number1,
+            }
+        }
+    }
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"hello world",
+            num1:1,
+            num2:0
+        },
+        methods:{
+          cpnClick(number){
+            this.num1=number;
+          }
+        },
+        components:{
+            cpn
+        }
+    })
+</script>
+</body>
+</html>

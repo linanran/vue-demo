@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4ff3761d-1f29-4df1-80df-9647045576ff" name="Default" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="ProjectId" id="1kEGmuGseKP0V6jOiJlQPwGfHwZ" />
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>General</id>
+          </State>
+          <State>
+            <id>XPath</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>AngularJS</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="JavaScriptPreferStrict" value="false" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>$USER_HOME$/.subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4ff3761d-1f29-4df1-80df-9647045576ff" name="Default" comment="" />
+      <created>1583150582086</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1583150582086</updated>
+      <workItem from="1583150584131" duration="1431000" />
+      <workItem from="1584000399722" duration="1214000" />
+      <workItem from="1584068424524" duration="7242000" />
+      <workItem from="1605258500751" duration="2940000" />
+      <workItem from="1605283845558" duration="18000" />
+      <workItem from="1605284222704" duration="11595000" />
+      <workItem from="1605933421358" duration="14070000" />
+      <workItem from="1606054398353" duration="5000" />
+      <workItem from="1606062049484" duration="862000" />
+      <workItem from="1609213192884" duration="1973000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1421" y="337" key="SettingsEditor" timestamp="1605705943339">
+      <screen x="0" y="23" width="2560" height="1352" />
+    </state>
+    <state x="1421" y="337" key="SettingsEditor/0.23.2560.1352@0.23.2560.1352" timestamp="1605705943339" />
+    <state x="1651" y="474" width="537" height="514" key="find.popup" timestamp="1609214227241">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state x="1651" y="453" width="537" height="490" key="find.popup/0.23.2560.1352@0.23.2560.1352" timestamp="1605705887082" />
+    <state x="1651" y="474" width="537" height="514" key="find.popup/0.23.2560.1417@0.23.2560.1417" timestamp="1609214227241" />
+    <state x="443" y="397" width="670" height="676" key="search.everywhere.popup" timestamp="1609214201431">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state x="443" y="397" width="670" height="676" key="search.everywhere.popup/0.23.2560.1417@0.23.2560.1417" timestamp="1609214201431" />
+  </component>
+</project>

@@ -1,0 +1,17 @@
+1，什么事MVVM
+模型层model：业务数据
+视图层view：页面展示层
+视图模型层view model：双向监听数据，无论是模型数据层发生变化还是视图层发生变化，他都会同步给对方，使两边保持一致
+见图片！！
+
+案例中的MVVM：
+
+html：view
+data：model
+vue：view model
+
+data通过vue展示到html页面中
+html页面中的按钮操作通过vue改变data中的数据
+
+
+

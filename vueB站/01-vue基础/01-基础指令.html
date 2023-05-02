@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--    01,引入vue-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+<!--    1,模版语法-->
+    {{message}}
+<!--    2，事件绑定-->
+    <button @click="changeMessage">change</button>
+<!--    3，列表显示-->
+    <div>
+        <ul>
+        <li v-for="(item,index) in colors">第{{index+1}}个：{{item}}</li>
+        </ul>
+    </div>
+<!--    4，v-once指令-->
+<!--
+    app.message="nonono";
+    该指令不会被执行
+    v-once：即数据不是响应式，不会被改变
+    -->
+    <p v-once>{{message}}</p>
+<!--    5，v-html-->
+    <hr>
+    <div v-html="some"></div>
+<!--    6,v-text -->
+<!--    一般不用，不够灵活，标签中的内容会被覆盖-->
+    <div v-text="message">123456</div>
+<!--    7-v-pre -->
+    <p v-pre>v-pre:{{message}}</p>
+<!--    8,v-cloak -->
+<!--    在vue 替换元素之前会显示{{}},影响用户体验
+        有v-cloak时不会显示该元素，vue处理后删除v-cloak属性并替换数据
+        一般不用
+-->
+    <div v-cloak>{{message}}</div>
+</div>
+
+<!--没有挂在管理，不会显示变量值-->
+<!--<div>{{message}}</div>-->
+
+<script>
+    /*
+       02，创建vue实例对象
+       传入一个对象,对象包含了多个属性：
+           el：用于挂在要管理的元素
+           data：定义数据
+       将id为app的内容交给vue实例来管理，将其中的内容替换为vue实例的内容
+    */
+    let vue=new Vue({
+        el:"#app",
+        //data可以是一个函数，也可以是一个对象，可以事先声明成一个变量再赋给data
+        data:{
+            message:"hello",
+            colors:["red","blue","orange","purple","green"],
+            some:"<h3 style='color:red'>v-html的使用</h3>"
+        },
+        methods:{
+            changeMessage(){
+                this.message="world!";
+            }
+        }
+    });
+</script>
+</body>
+</html>

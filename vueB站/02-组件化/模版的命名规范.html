@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <temp-app :movies2="movies"></temp-app>
+</div>
+
+<template id="TempApp">
+    <div>
+        {{movies2}}
+    </div>
+</template>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    /*
+    模版的命名有一定的规范
+    需要首字母大写，驼峰法命名，且在使用模版时不能使用大写，用-号分开
+    或不使用大写，两个单词使用-号分开
+      */
+    const TempApp = {
+        template: "#TempApp",
+        props: {
+            movies2: Array
+        }
+    };
+    let app = new Vue({
+        el:"#app",
+        data:{
+            movies:["a","b","c","d"]
+        },
+        components:{
+            TempApp
+        }
+    });
+
+</script>
+</body>
+</html>
